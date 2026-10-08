@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block title %}Upload Document | Ultra Project Library{% endblock %}
+{% block content %}<section class="narrow"><h1>Upload Document</h1>
+<p>Fields marked <span class="req">*</span> are required. Uploads are reviewed before they go live.</p>
+<form method="post" enctype="multipart/form-data">{% csrf_token %}{% include "_form.html" %}
+<button class="btn" type="submit">Submit for review</button></form></section>{% endblock %}

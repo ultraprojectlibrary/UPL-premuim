@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block content %}<section><h1>Placements</h1>
+<form method="get" class="search"><input name="q" value="{{ q }}" placeholder="Search role, organization, location" aria-label="Search"><button class="btn small">Search</button></form>
+<div class="grid">{% for p in page %}<div class="card"><h3>{{ p.title }}</h3><p>{{ p.org_name }} · {{ p.location }}</p>
+<p>Landmark: {{ p.nearest_landmark }}</p><p>{{ p.description|truncatechars:140 }}</p></div>{% empty %}<p>No listings yet.</p>{% endfor %}</div></section>{% endblock %}

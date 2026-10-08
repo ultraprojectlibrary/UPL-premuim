@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block title %}Documents | Ultra Project Library{% endblock %}
+{% block content %}<section><h1>Documents</h1>
+<form method="get" class="search"><input name="q" value="{{ q }}" placeholder="Search title, abstract, author" aria-label="Search">
+<button class="btn small">Search</button></form>
+<div class="grid">{% for d in page %}<a class="card" href="{% url 'document_detail' d.slug %}"><h3>{{ d.title|truncatechars:80 }}</h3>
+<p>{{ d.author_name }} · {{ d.school }} · {{ d.level }}</p><strong>&#8358;{{ d.price_naira|floatformat:"0g" }}</strong></a>{% empty %}<p>Nothing found.</p>{% endfor %}</div>
+<p>{% if page.has_previous %}<a href="?page={{ page.previous_page_number }}&q={{ q|urlencode }}">Previous</a>{% endif %}
+{% if page.has_next %}<a href="?page={{ page.next_page_number }}&q={{ q|urlencode }}">Next</a>{% endif %}</p></section>{% endblock %}

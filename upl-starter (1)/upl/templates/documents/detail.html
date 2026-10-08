@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block title %}{{ doc.title }} | Ultra Project Library{% endblock %}
+{% block desc %}{{ doc.abstract|truncatechars:150 }}{% endblock %}
+{% block content %}<section class="narrow"><h1>{{ doc.title }}</h1>
+<p>By {{ doc.author_name }} · {{ doc.school }} · {{ doc.level }}</p>{{ doc.abstract|linebreaks }}
+<p><strong>&#8358;{{ doc.price_naira|floatformat:"0g" }}</strong></p>
+{% if owned %}<p>You own this. Find the download button on your <a href="{% url 'dashboard' %}">dashboard</a>.</p>
+{% else %}<form method="post" action="{% url 'buy_document' doc.slug %}">{% csrf_token %}<button class="btn" type="submit">Purchase</button></form>{% endif %}
+</section>{% endblock %}

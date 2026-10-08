@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block title %}Dashboard | Ultra Project Library{% endblock %}
+{% block content %}<section><h1>Welcome, {{ user.first_name|default:user.username }}</h1>
+{% if not user.is_email_verified %}<div class="msg warning">Your email is not verified.
+<form method="post" action="{% url 'resend_verification' %}">{% csrf_token %}<button class="btn small">Resend verification email</button></form></div>{% endif %}
+<a class="btn" href="{% url 'upload_document' %}">Upload Document</a>
+<h2>Purchased documents</h2>
+{% for e in purchases %}<div class="row"><span>{{ e.document.title }}</span><a class="btn small" href="{% url 'download_document' e.download_token %}">Download</a></div>
+{% empty %}<p>No purchases yet.</p>{% endfor %}
+<h2>My uploads</h2>
+{% for d in uploads %}<div class="row"><span>{{ d.title }}</span><span class="badge {{ d.status }}">{{ d.get_status_display }}</span>
+{% if d.review_note %}<small>Note: {{ d.review_note }}</small>{% endif %}</div>
+{% empty %}<p>You have not uploaded anything.</p>{% endfor %}</section>{% endblock %}

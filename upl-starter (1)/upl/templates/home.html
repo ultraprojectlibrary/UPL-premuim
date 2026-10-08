@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero"><h1>Access Thousands of Academic Projects &amp; Research Materials</h1>
+<p>Projects, seminars, source code, courses, placements and one-on-one sessions for Nigerian students.</p>
+<h2>DM for the following writeup services</h2>
+<div class="grid">{% for s in services %}
+<a class="card cta" href="{{ s.url }}" target="_blank" rel="noopener">{{ s.name }}<span>Chat on WhatsApp</span></a>{% endfor %}</div></section>
+
+<section class="placements"><h2>Create Opportunities. Build Experience. Start Your Career.</h2>
+<p>Companies, NGOs, agencies, startups and NYSC PPA organizations can post IT, NYSC and job placements for students and graduates.</p>
+<a class="btn" href="/placements/submit/">Submit Placement</a></section>
+
+<section><h2>Latest documents</h2><div class="grid">{% for d in latest %}
+<a class="card" href="{% url 'document_detail' d.slug %}"><h3>{{ d.title|truncatechars:70 }}</h3>
+<p>{{ d.author_name }} · {{ d.level }}</p><strong>&#8358;{{ d.price_naira|floatformat:"0g" }}</strong></a>
+{% empty %}<p>No documents yet.</p>{% endfor %}</div></section>
+
+<section><h2>Join our WhatsApp and Telegram channels to see the next computer-based project and seminar topics.</h2>
+{% if S.whatsapp_group_url %}<a class="btn" href="{{ S.whatsapp_group_url }}">WhatsApp</a>{% endif %}
+{% if S.telegram_url %}<a class="btn" href="{{ S.telegram_url }}">Telegram</a>{% endif %}
+<p>Visit our social handles for updates and information.</p></section>
+{% endblock %}

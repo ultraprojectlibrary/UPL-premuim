@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% block content %}<section class="narrow"><h1>Payment confirmed</h1><p>Reference: {{ order.provider_reference }}</p>
+<a class="btn" href="{% url 'dashboard' %}">Go to dashboard to download</a></section>{% endblock %}

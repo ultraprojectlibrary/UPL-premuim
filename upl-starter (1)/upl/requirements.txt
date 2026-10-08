@@ -1,0 +1,16 @@
+Django>=5.1,<5.3
+psycopg[binary]>=3.2
+django-environ>=0.11
+requests>=2.32
+celery>=5.4
+redis>=5.0
+django-axes>=6.5          # login lockout / brute-force protection
+django-csp>=3.8           # Content-Security-Policy
+django-ratelimit>=4.1
+django-otp>=1.5           # 2FA for admins
+qrcode>=7.4
+whitenoise>=6.7
+gunicorn>=22.0
+Pillow>=10.4
+django-storages[s3]>=1.14 # private S3/R2 bucket for paid files in production
+sentry-sdk>=2.0

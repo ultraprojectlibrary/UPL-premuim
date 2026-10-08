@@ -1,0 +1,23 @@
+{% load static %}<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Ultra Project Library | Digital Repository{% endblock %}</title>
+<meta name="description" content="{% block desc %}Nigeria's academic repository: projects, seminars, materials, source code, courses, placements and one-on-one sessions.{% endblock %}">
+<link rel="icon" href="{% static 'images/logo-icon-white.png' %}">
+<link rel="stylesheet" href="{% static 'css/site.css' %}">
+</head><body>
+<header class="nav"><a href="/"><img src="{% static 'images/logo-white.png' %}" alt="Ultra Project Library" height="36"></a>
+<details class="menu"><summary>Menu</summary><nav>
+<a href="/documents/">Documents</a><a href="/it-placement/">IT Placement</a><a href="/nysc/">NYSC</a><a href="/jobs/">Jobs</a>
+{% if user.is_authenticated %}<a href="{% url 'upload_document' %}">Upload Document</a><a href="{% url 'dashboard' %}">Dashboard</a>
+<form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="linklike">Logout</button></form>
+{% else %}<a href="{% url 'login' %}">Login</a><a href="{% url 'register' %}">Register</a>{% endif %}
+</nav></details></header>
+{% if messages %}<div class="msgs" role="status">{% for m in messages %}<p class="msg {{ m.tags }}">{{ m }}</p>{% endfor %}</div>{% endif %}
+<main>{% block content %}{% endblock %}</main>
+<footer class="foot"><p>&copy; Ultra Project Library</p>
+{% if S.instagram_url %}<a href="{{ S.instagram_url }}" rel="noopener">Instagram</a>{% endif %}
+{% if S.facebook_url %}<a href="{{ S.facebook_url }}" rel="noopener">Facebook</a>{% endif %}
+{% if S.linkedin_url %}<a href="{{ S.linkedin_url }}" rel="noopener">LinkedIn</a>{% endif %}
+{% if S.youtube_url %}<a href="{{ S.youtube_url }}" rel="noopener">YouTube</a>{% endif %}
+</footer></body></html>
